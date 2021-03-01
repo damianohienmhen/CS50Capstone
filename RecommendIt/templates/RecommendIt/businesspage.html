@@ -1,0 +1,70 @@
+{% extends "RecommendIt/layout.html" %}
+
+{% load static %}
+
+{% load ratings %}
+
+{% ratings object %}
+{% block body %}
+
+
+<br>
+<h2 style="margin:10px;"> {{business.business_name}} <i class="em em-star2" aria-role="presentation" aria-label="GLOWING STAR"></i>{{ rat }}/10 </h2> 
+{% if rating is null %}
+<form action = "{% url 'rate_business' business.business_name %}" method="post"> 
+ 
+      {{ rating_form.as_p }} 
+      {% csrf_token %} 
+    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+</form> 
+{% else %}
+<div>You have already rated this business</div>
+{% endif %}
+<td><img style="margin:20px;" src="{{ business.image.url }}" width="250" height= "280"></td>
+
+<h3>Leave a Review</h3>
+  <form action = "{% url 'create_comment' business.business_name %}" method="post"> 
+      {{ comment_form.as_p }} 
+      {% csrf_token %} 
+      <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+  </form> 
+  <br>
+
+{% for post in page_obj %}
+  
+    <div id = "thecomment_{{post.id}}" class="cover"><br>
+        <a style="font-size:30px;">{{post.commentuser}}</a><br>
+        {% if user ==  post.commentuser %}
+            <button class="btn btn-sm btn-outline-primary" onclick=edit(`{{post.id}}`)>Edit</button><br>
+        {% else %}
+        {{empty}}
+        {% endif %}
+        {{post.new_comment}}<br>
+    </div>
+    
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'RecommendIt/main.js' %}"></script>
+{% endblock %}

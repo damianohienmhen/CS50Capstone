@@ -1,0 +1,80 @@
+
+h1 {
+    color:red;
+    font-family: "Stencil Std", fantasy;
+  
+}
+
+  
+}
+
+.p {
+    border: 2px solid white;
+    width: 500px;
+}
+
+.box {
+    float: right;
+    background: white;
+    border: solid 2px black; 
+                
+}
+
+.avatar  {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: blue;
+  border: solid 2px black;
+}
+
+.page {
+     width: 1000px;
+     margin: 0 auto;
+}
+
+#profile {
+    width: 300px;
+    text-align:center;
+    font-family: "Stencil Std", fantasy;
+}
+
+.profilepage {
+  text-align: center
+  
+}
+
+.stats {
+  width: 1000px;
+  border: solid black;
+  padding: 10px;
+  margin: 20px;
+  float: right;
+  font-size: 30px;
+  text-align: left;
+  display: flex;
+}
+
+.cover {
+  border: 2px solid black;
+  border-width: 0.5px;
+  background-color: white;
+  font-size: 17px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0px 0;
+}
+
+#text {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  left: 260px;
+  top: 200px;
+  font-family: "Stencil Std", fantasy;
+}
+
+
+

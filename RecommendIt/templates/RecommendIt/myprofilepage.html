@@ -1,0 +1,25 @@
+{% extends "RecommendIt/layout.html" %}
+
+
+{% load static %}
+
+{% block body %}
+
+<div style="font-size:40px;" >{{theuser}}'s Profile Page<div>
+<div style="font-size:20px;" class="text-primary">
+
+<td><img src="{{ theuser.picture.url }}" width="200" height= "280"></td>
+
+
+<h2>Business's Owned </h2>
+
+{% for item in ownedbusiness%}
+ <a href="{% url 'businesspage' item.thebusiness.business_name %}">
+   <li>{{item.thebusiness.business_name}}</li> 
+  </a>
+    
+{% endfor %}
+
+
+{% endblock %}
+

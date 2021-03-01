@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}RateIT{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'RecommendIt/styles.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+        <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+        <script href="{% static 'RecommendIt/main.js' %}" ></script>
+        <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+        <script href="{% static 'RecommendIt/main.js' %}" ></script>
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body >
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  	   <a href="{% url 'index' %}">
+         <img style = "width: 100px; height :100px" src="https://lh3.googleusercontent.com/vs1pqkChaYsySLnfXPIsaJ--IKyRonhx9FFqct1AXfeobLOL-L8V7Pczc6Jvdpop9VjP53oeh3mnMX0S-hq47M1h4s98tTij-Ad0tgRxi57_GjTvzksR8hof6_XEqA8rbAdibaCehw=w2400" >
+       </a>
+       
+  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+    
+  	<div class="collapse navbar-collapse" id="navbarText">
+  	
+     <ul class="navbar-nav mr-auto">
+     
+      {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profilepage' user %}"><strong>{{ user.username }}</strong></a>
+                    </li>
+                {% endif %}
+     
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            
+             <li class="nav-item">
+                <a class="nav-link"href="{% url 'newbusiness' %}">Register New Business</a>
+            </li>
+                    
+            <li class="nav-item">
+                <a class="nav-link"href="{% url 'businesslistings' %}">Business Listings</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+        {% endif %}
+      
+	</ul>
+
+    </div>
+  
+{% if message %}
+        {{ message }}
+{% endif %}
+
+{% if rate %}
+        {{ rate }}
+{% endif %}
+  
+  
+  
+</nav>
+
+
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

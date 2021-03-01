@@ -1,0 +1,14 @@
+{% extends "RecommendIt/layout.html" %}
+
+{% block body %}
+
+<br>
+<h2> {{categoryname}} </h2>
+{% for item in businesslist %}
+  <a href="{% url 'businesspage' item.business_name %}">
+    <li>{{ item.business_name }}</li>
+  </a>
+{% endfor %}
+
+
+{% endblock %}

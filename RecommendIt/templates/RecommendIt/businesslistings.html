@@ -1,0 +1,18 @@
+{% extends "RecommendIt/layout.html" %}
+
+
+{% load static %}
+
+{% block body %}
+<br>
+<h2> Business Categories </h2>
+{% for listing in businesslistings %}
+  <a href="{% url 'eachcategory' listing.category %}">
+    <li>{{ listing.category }}</li>
+  </a>
+{% endfor %}
+
+
+
+{% endblock %}
+
